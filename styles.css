@@ -1,0 +1,683 @@
+/*==================================================
+  1. VARIABEL & RESET
+==================================================*/
+:root {
+    --primary-color: #007bff; /* Biru Klinik */
+    --secondary-color: #28a745; /* Hijau CTA */
+    --text-dark: #333;
+    --text-light: #fff;
+    --bg-light: #f8f9fa; 
+    --bg-white: #fff; 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--bg-white); 
+    scroll-behavior: smooth; 
+}
+
+/* Base Link Style */
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color 0.3s;
+}
+
+/* Pseudo-element untuk Logo Latar Belakang Penuh (Watermark Global) */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* PATH DIUBAH ke assets/ */
+    background-image: url('assets/logo.png'); 
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain; 
+    
+    opacity: 10; 
+    z-index: -1; 
+}
+
+/*==================================================
+  2. NAVBAR & HEADER
+==================================================*/
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary-color);
+    padding: 15px 30px;
+    color: var(--text-light);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo a {
+    color: var(--text-light);
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: var(--text-light);
+    padding: 5px 0;
+}
+
+.nav-links a:hover {
+    color: #ffd700;
+}
+
+/* Tombol CTA (Call-to-Action) di Navbar */
+.cta-button {
+    background-color: var(--secondary-color);
+    color: var(--text-light) !important;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #218838;
+}
+
+/* Hamburger Icon Styling (Default Sembunyi) */
+.menu-toggle {
+    display: none; 
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-light);
+    margin: 4px 0;
+    transition: 0.4s;
+}
+
+/*==================================================
+  3. KONTEN UTAMA (SECTIONS)
+==================================================*/
+main {
+    padding-top: 60px;
+}
+
+/* Section Hero */
+.hero {
+    /* PATH DIUBAH ke assets/ */
+    background-image: url('assets/latar.jpeg'); 
+    background-size: cover; 
+    background-position: center 50%; 
+    background-attachment: fixed; 
+    position: relative;
+    overflow: hidden;
+
+    background-color: #333; 
+    color: var(--text-light); 
+    padding: 80px 30px;
+    text-align: center;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1; 
+}
+
+.hero > * {
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+}
+
+/* Tombol Utama */
+.primary-button {
+    display: inline-block;
+    background-color: var(--secondary-color); 
+    color: var(--text-light) !important;
+    padding: 12px 25px;
+    margin-top: 20px;
+    border-radius: 5px;
+    font-size: 1.1em;
+    transition: background-color 0.3s;
+}
+
+.primary-button:hover {
+    background-color: #218838;
+}
+
+/* Gaya Dasar Semua Section Konten */
+.section-layanan, .section-fasilitas, .section-dokter, .section-kontak, .section-kegiatan, .section-staf, .section-galeri {
+    padding: 50px 30px;
+    text-align: center;
+    color: var(--text-dark);
+    background-color: rgba(255, 255, 255, 0.9); 
+}
+
+.section-layanan h2, .section-fasilitas h2, .section-dokter h2, .section-kontak h2, .section-kegiatan h2, .section-staf h2, .section-galeri h2 {
+    color: var(--text-dark);
+    margin-bottom: 30px;
+}
+
+/* --- LAYANAN & FASILITAS --- */
+.layanan-grid, .fasilitas-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+    flex-wrap: wrap; 
+}
+
+.layanan-item { width: 25%; background-color: rgba(233, 236, 239, 0.95); }
+.fasilitas-item { width: 20%; background-color: rgba(248, 249, 250, 0.95); }
+
+.layanan-item, .fasilitas-item {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    padding: 25px 20px; 
+    border-radius: 8px;
+    transition: transform 0.3s;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.layanan-item:hover, .fasilitas-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.layanan-icon, .fasilitas-icon { font-size: 3em; margin-bottom: 10px; line-height: 1; }
+.layanan-icon { color: var(--primary-color); }
+.fasilitas-icon { color: var(--secondary-color); }
+
+.layanan-item p, .fasilitas-item p {
+    font-size: 1.0em;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* --- GALERI FOTO KLINIK --- */
+.section-galeri {
+    background-color: var(--bg-light); 
+}
+
+.section-galeri h2 {
+    color: var(--primary-color);
+}
+
+.galeri-grid {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 30px;
+    flex-wrap: wrap; 
+}
+
+.galeri-item {
+    width: 280px; 
+    border-radius: 8px;
+    overflow: hidden; 
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); 
+    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: var(--bg-white);
+    text-align: center;
+    cursor: pointer;
+}
+
+.galeri-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.galeri-img {
+    width: 100%;
+    height: 180px; 
+    object-fit: cover; 
+    display: block;
+}
+
+.galeri-caption {
+    padding: 12px;
+    font-weight: bold;
+    font-size: 1em;
+    color: var(--text-dark);
+    background-color: rgba(0, 123, 255, 0.1); 
+}
+
+
+/* --- PROFIL DOKTER --- */
+.dokter-list-container {
+    max-width: 850px; 
+    margin: 30px auto 0 auto;
+    text-align: center; 
+}
+
+.dokter-list {
+    list-style: none; 
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; 
+    gap: 20px;
+}
+
+.dokter-list li {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    width: 200px; 
+    padding: 15px;
+    border-radius: 5px;
+    background-color: rgba(248, 249, 250, 0.95); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.dokter-list li img {
+    width: 100px; 
+    height: 100px;
+    border-radius: 50%; 
+    object-fit: cover; 
+    border: 3px solid var(--primary-color); 
+    margin-bottom: 10px; 
+}
+
+.dokter-list li strong {
+    font-size: 1.1em;
+    color: var(--primary-color);
+    display: block;
+    margin-bottom: 2px;
+}
+
+
+/* --- KEGIATAN KLINIK --- */
+.section-kegiatan {
+    background-color: rgba(255, 255, 255, 0.95); 
+}
+
+.kegiatan-list {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    gap: 30px;
+}
+
+.kegiatan-item {
+    width: 350px; 
+    padding: 15px;
+    border-radius: 8px;
+    background-color: var(--bg-white);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    border-top: 5px solid var(--secondary-color); 
+    transition: transform 0.3s;
+    text-align: left; 
+}
+
+.kegiatan-img {
+    width: 100%;
+    height: 200px; 
+    object-fit: cover; 
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.kegiatan-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 5px;
+    font-size: 1.3em;
+}
+
+.kegiatan-detail {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: var(--bg-light);
+    border-radius: 5px;
+    font-size: 0.9em;
+    text-align: left;
+}
+
+/* --- STAF PENDUKUNG KLINIK --- */
+.section-staf {
+    background-color: var(--bg-light); 
+}
+
+.section-staf p {
+    margin-bottom: 30px;
+    color: #6c757d;
+}
+
+.staf-list {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    gap: 25px;
+}
+
+.staf-item {
+    width: 250px; 
+    padding: 15px;
+    border-radius: 8px;
+    background-color: var(--bg-white);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-bottom: 4px solid var(--secondary-color); 
+    transition: transform 0.3s;
+    text-align: center;
+}
+
+.staf-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.staf-img {
+    width: 120px;
+    height: 120px; 
+    object-fit: cover; 
+    border-radius: 50%; 
+    border: 3px solid var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.staf-item h3 {
+    color: var(--text-dark);
+    margin-bottom: 2px;
+    font-size: 1.2em;
+}
+
+.staf-item p {
+    font-size: 0.9em;
+    color: var(--primary-color);
+    font-weight: bold;
+    margin: 0;
+}
+
+.staf-role {
+    display: block;
+    font-size: 0.8em;
+    color: #6c757d;
+    margin-top: 5px;
+}
+
+
+/* --- KONTAK & PETA --- */
+
+.map-container {
+    margin-top: 25px;
+    max-width: 800px; 
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.map-container iframe {
+    width: 100%; 
+    height: 400px; 
+    display: block;
+}
+
+
+/*==================================================
+  4. FOOTER & UTILITY
+==================================================*/
+footer {
+    background-color: var(--text-dark);
+    color: var(--text-light);
+    text-align: center;
+    padding: 15px;
+    font-size: 0.9em;
+}
+
+/* Back to Top Button Styling */
+#backToTopBtn {
+    display: none; 
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: var(--secondary-color);
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 50%;
+    font-size: 18px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+}
+
+#backToTopBtn:hover {
+    background-color: #218838;
+}
+
+/* --- Floating Contact Bar --- */
+#floating-contact-bar {
+    display: none; /* Default tersembunyi, hanya tampil di mobile */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--primary-color);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 990;
+    padding: 10px 0;
+    justify-content: space-around;
+}
+
+.contact-btn {
+    flex-grow: 1;
+    text-align: center;
+    padding: 10px 5px;
+    font-weight: bold;
+    color: var(--text-light) !important;
+}
+
+.phone-btn {
+    background-color: #3498db; 
+}
+
+.whatsapp-btn {
+    background-color: var(--secondary-color); 
+}
+
+
+/*==================================================
+  5. MODAL IMAGE LIGHTBOX
+==================================================*/
+.modal {
+    /* Sembunyikan secara default */
+    display: none; 
+    
+    /* Posisi tetap (fixed) di atas segalanya */
+    position: fixed; 
+    z-index: 10000; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Latar belakang gelap transparan */
+    background-color: rgba(0, 0, 0, 0.9); 
+    overflow: auto; 
+    
+    /* Gunakan flexbox untuk pemosisian gambar di tengah */
+    align-items: center; 
+    justify-content: center; 
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.modal.visible {
+    display: flex;
+    opacity: 1;
+}
+
+/* Konten di dalam modal */
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%; 
+    max-height: 90%; 
+    text-align: center;
+    position: relative;
+    animation: zoomIn 0.3s;
+}
+
+.modal-content img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 80vh; /* Maksimal 80% tinggi viewport */
+    border-radius: 5px;
+}
+
+/* Caption di bawah gambar */
+#modalCaption {
+    margin-top: 10px;
+    display: block;
+    padding: 10px 0;
+    color: #ccc;
+    font-size: 1.1em;
+}
+
+/* Tombol Tutup (Close Button) */
+.modal-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+    z-index: 10001; 
+}
+
+.modal-close-btn:hover,
+.modal-close-btn:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Animasi Zoom In saat muncul */
+@keyframes zoomIn {
+    from {transform: scale(0.9);}
+    to {transform: scale(1);}
+}
+
+
+/*==================================================
+  6. MEDIA QUERIES (RESPONSIVE DESIGN)
+==================================================*/
+
+/* Tampilan Mobile (maksimal lebar 768px) */
+@media (max-width: 768px) {
+    
+    .menu-toggle { display: flex; }
+    
+    .nav-links { 
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 65px; 
+        left: 0;
+        background-color: var(--primary-color);
+        padding: 10px 0;
+        text-align: center;
+        transition: all 0.3s ease-in-out;
+        z-index: 999;
+    }
+
+    .nav-links a {
+        padding: 10px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        width: 100%;
+    }
+    
+    .nav-links.active { display: flex; }
+
+    /* Animasi Hamburger */
+    .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
+    .menu-toggle.active .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .menu-toggle.active .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Layout Konten Mobile: 1 kolom */
+    .hero h1 { font-size: 2em; }
+
+    .layanan-grid, .fasilitas-grid, .kegiatan-list, .staf-list, .galeri-grid {
+        flex-direction: column; 
+    }
+
+    /* Item Grid Mobile */
+    .layanan-item, .fasilitas-item, .kegiatan-item, .staf-item, .galeri-item {
+        width: 90%;
+        margin: 0 auto 15px auto;
+        background-color: var(--bg-white); 
+    }
+    
+    .galeri-img {
+        height: 200px; /* Sedikit lebih tinggi di mobile */
+    }
+
+    /* Penyesuaian Dokter Mobile */
+    .dokter-list-container { margin-left: 10px; margin-right: 10px; }
+    .dokter-list li { width: 90%; margin-left: auto; margin-right: auto; }
+    
+    /* Peta di Mobile */
+    .map-container iframe { height: 300px; }
+    
+    /* Tampilkan Floating Contact Bar di Mobile */
+    #floating-contact-bar {
+        display: flex;
+    }
+    
+    /* Beri ruang di bagian bawah konten agar tidak tertutup bar */
+    footer {
+        margin-bottom: 60px; 
+    }
+    
+    /* Penyesuaian Modal di Mobile */
+    .modal-content {
+        max-width: 95%;
+    }
+    .modal-content img {
+        max-height: 70vh;
+    }
+    .modal-close-btn {
+        top: 10px;
+        right: 15px;
+        font-size: 30px;
+    }
+}
